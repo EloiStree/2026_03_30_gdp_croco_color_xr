@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://caovwgkteh3g3"]
+
+[ext_resource type="Script" uid="uid://bdk4yy0bney46" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_setter_tag_rgb.gd" id="1_gm7vj"]
+[ext_resource type="Script" uid="uid://cium7ymmdmeug" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_resource_rgb.gd" id="2_4tg45"]
+[ext_resource type="Script" uid="uid://llosey2frpwh" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_set_albedo_color.gd" id="3_0ndmr"]
+
+[sub_resource type="Resource" id="Resource_xip6c"]
+script = ExtResource("2_4tg45")
+color = Color(0, 0.46288538, 1.0588765e-06, 1)
+metadata/_custom_type_script = "uid://cium7ymmdmeug"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmcyj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5d1so"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2v22p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1n1v"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="CrocoColorPoint" type="Area3D" unique_id=1216317755]
+
+[node name="TagColor" type="Node" parent="." unique_id=1483138522]
+script = ExtResource("1_gm7vj")
+color_resource = SubResource("Resource_xip6c")
+
+[node name="SetMesh" type="Node" parent="." unique_id=576331397 node_paths=PackedStringArray("to_affect")]
+script = ExtResource("3_0ndmr")
+to_affect = [NodePath("../MeshInstance3D")]
+material_to_duplicate_at_ready = SubResource("StandardMaterial3D_jmcyj")
+metadata/_custom_type_script = "uid://llosey2frpwh"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1225078254]
+shape = SubResource("SphereShape3D_5d1so")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=306835124]
+mesh = SubResource("BoxMesh_2v22p")
+surface_material_override/0 = SubResource("StandardMaterial3D_l1n1v")
+
+[connection signal="on_color_at_ready" from="TagColor" to="SetMesh" method="set_color"]

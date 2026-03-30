@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8u01tln37q4q"]
+
+[ext_resource type="PackedScene" uid="uid://caovwgkteh3g3" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/element_croco_color_point.tscn" id="1_rcuiq"]
+[ext_resource type="Script" uid="uid://cium7ymmdmeug" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_resource_rgb.gd" id="2_5xkoi"]
+
+[sub_resource type="Resource" id="Resource_2plov"]
+script = ExtResource("2_5xkoi")
+color = Color(1, 1, 0, 1)
+metadata/_custom_type_script = "uid://cium7ymmdmeug"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcuiq"]
+albedo_color = Color(0.95000005, 1, 0, 1)
+
+[node name="CrocoColorPointYellow" unique_id=1216317755 instance=ExtResource("1_rcuiq")]
+
+[node name="TagColor" parent="." index="0" unique_id=1483138522]
+color_resource = SubResource("Resource_2plov")
+
+[node name="MeshInstance3D" parent="." index="3" unique_id=306835124]
+surface_material_override/0 = SubResource("StandardMaterial3D_rcuiq")

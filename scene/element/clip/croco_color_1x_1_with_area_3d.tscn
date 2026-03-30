@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cb6qnb2e5s0hq"]
+
+[ext_resource type="Script" uid="uid://cq8eiihishgx7" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_clip_facade.gd" id="1_48bo0"]
+[ext_resource type="PackedScene" uid="uid://5p0svqa1boyo" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/clip/element_croco_color_1x1.tscn" id="1_n0o23"]
+[ext_resource type="Script" uid="uid://bokleaxj1rdo6" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_collidable_area_3d.gd" id="2_48bo0"]
+[ext_resource type="Script" uid="uid://bdk4yy0bney46" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_setter_tag_rgb.gd" id="3_nitn1"]
+[ext_resource type="Script" uid="uid://bfp3vg2e5ujb4" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_tag_to_color_event.gd" id="4_q4h4v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fo8ry"]
+radius = 0.23339844
+height = 2.3258362
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4mnd1"]
+height = 1.3024902
+
+[node name="CrocoColor1x1WithArea3D" type="Node3D" unique_id=2008811421 node_paths=PackedStringArray("tip_point", "cable_point", "clip_interaction_shape", "clip_color")]
+script = ExtResource("1_48bo0")
+tip_point = NodePath("AnchorTipPoint")
+cable_point = NodePath("AnchorCablePoint")
+clip_interaction_shape = NodePath("Area3DInteractingWithColorSetter/CollisionShape3D")
+clip_color = NodePath("CrocoColor1x1")
+
+[node name="CrocoColor1x1" parent="." unique_id=1414814149 instance=ExtResource("1_n0o23")]
+
+[node name="CrocoClipDown" parent="CrocoColor1x1/AnchorRoot" parent_id_path=PackedInt32Array(1414814149, 2016933803) index="0" unique_id=658531104]
+surface_material_override/0 = null
+
+[node name="CrocoClipTop" parent="CrocoColor1x1/AnchorRoot/AnchorRotation" parent_id_path=PackedInt32Array(1414814149, 193913479) index="0" unique_id=1195875993]
+surface_material_override/0 = null
+
+[node name="Area3DColorTouch" type="Area3D" parent="." unique_id=376540391]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DColorTouch" unique_id=2035445368]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.10836518, 0.28622037)
+shape = SubResource("CapsuleShape3D_fo8ry")
+
+[node name="Area3DInteractingWithColorSetter" type="Area3D" parent="." unique_id=1476708862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.61374146)
+script = ExtResource("2_48bo0")
+allow_if_have_this_script_as_node = ExtResource("3_nitn1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DInteractingWithColorSetter" unique_id=1184291584]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.10836518, 0.26119596)
+shape = SubResource("CapsuleShape3D_4mnd1")
+
+[node name="CrocoColorTagToColorEvent" type="Node" parent="Area3DInteractingWithColorSetter" unique_id=1779903680]
+script = ExtResource("4_q4h4v")
+metadata/_custom_type_script = "uid://bfp3vg2e5ujb4"
+
+[node name="AnchorTipPoint" type="Node3D" parent="." unique_id=1562784570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.109821856, -0.8418285)
+
+[node name="AnchorCablePoint" type="Node3D" parent="." unique_id=433496625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.109821856, 1.38308)
+
+[connection signal="on_open_state_updated" from="." to="CrocoColor1x1/CrocoColorOnOffAnimation" method="set_is_open_state"]
+[connection signal="on_node_entering_valide" from="Area3DInteractingWithColorSetter" to="Area3DInteractingWithColorSetter/CrocoColorTagToColorEvent" method="push_in_node_holding_color"]
+[connection signal="on_color_found" from="Area3DInteractingWithColorSetter/CrocoColorTagToColorEvent" to="CrocoColor1x1" method="set_color_with_color"]
+
+[editable path="CrocoColor1x1"]
