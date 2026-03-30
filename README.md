@@ -1,3 +1,10 @@
+Add to a git project.
+```
+git submodule add https://github.com/EloiStree/2026_03_30_gdp_croco_color_xr.git addons/2026_03_30_gdp_croco_color_xr
+```
+
+----------------
+
 # Croco Color XR
 
 > Croco color to connect node together.
