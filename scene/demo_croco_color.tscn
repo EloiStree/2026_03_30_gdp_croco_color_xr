@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://doa6b1cut44gq"]
 
 [ext_resource type="PackedScene" uid="uid://cb6qnb2e5s0hq" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/clip/croco_color_1x_1_with_area_3d.tscn" id="1_py56h"]
+[ext_resource type="Script" uid="uid://b7icq3h6pwsjb" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_magnet_area_3d.gd" id="1_ynq2y"]
 [ext_resource type="PackedScene" uid="uid://cyvl2l134rkcm" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_black.tscn" id="5_ynq2y"]
 [ext_resource type="PackedScene" uid="uid://bpjixemhpg6di" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_blue.tscn" id="6_xo6q1"]
 [ext_resource type="PackedScene" uid="uid://ifhedca2fj6v" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_cyan.tscn" id="7_2hy5j"]
@@ -9,24 +10,53 @@
 [ext_resource type="PackedScene" uid="uid://b1x6nj2ih4vrc" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_purple.tscn" id="9_06mcm"]
 [ext_resource type="PackedScene" uid="uid://balhy7028xvfb" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_red.tscn" id="10_s3gyk"]
 [ext_resource type="Script" uid="uid://bofu3bjfi6yo" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_debug_clip_bwrgbcyp.gd" id="10_xovao"]
+[ext_resource type="PackedScene" uid="uid://buexbodvo8dhu" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/copy_paster/croco_color_copy_paster.tscn" id="11_4gqks"]
 [ext_resource type="PackedScene" uid="uid://b8u01tln37q4q" path="res://addons/2026_03_30_gdp_croco_color_xr/scene/element/color_point/croco_color_point_yellow.tscn" id="12_uwnac"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xo6q1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2hy5j"]
 
 [node name="CrocoColor" type="Node3D" unique_id=444929102]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=742276641]
-transform = Transform3D(0.020890104, -0.5342653, 0.84505874, 0, 0.84524316, 0.53438187, -0.9997818, -0.011163293, 0.017657219, 4.953709, 2.6938455, 0.20575011)
+[node name="ClampableZone" type="Node3D" parent="." unique_id=1951082670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.880879, -1.833473)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClampableZone" unique_id=1638628741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34701204, 0.26549888)
+mesh = SubResource("BoxMesh_xo6q1")
+
+[node name="CrocoColorMagnetArea3D" type="Area3D" parent="ClampableZone" unique_id=2122564565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34701204, 0.26549888)
+script = ExtResource("1_ynq2y")
+metadata/_custom_type_script = "uid://b7icq3h6pwsjb"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClampableZone/CrocoColorMagnetArea3D" unique_id=976983686]
+shape = SubResource("BoxShape3D_2hy5j")
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=1989861247]
+transform = Transform3D(0.9969949, 0.04139716, -0.06547876, 0, 0.84524316, 0.5343819, 0.07746737, -0.53277606, 0.84270304, -1.1710473, 5.7515783, 1.1230311)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2122945618]
 transform = Transform3D(0.6216789, 0.53259575, 0.5743319, -0.3912042, 0.84636986, -0.36141038, -0.67858285, 4.666745e-08, 0.73452395, 4.7683716e-07, 0.2708304, 3.4302118)
 
-[node name="CrocoColor1x1WithArea3D" parent="." unique_id=2008811421 instance=ExtResource("1_py56h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0819974, -0.7588712)
+[node name="Node3D" type="Node3D" parent="." unique_id=1385410029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0643697, -2.5092657)
+
+[node name="CrocoColor1x1WithArea3D" parent="Node3D" unique_id=2008811421 instance=ExtResource("1_py56h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12985611, 1.7503945)
 
 [node name="CrocoColor1x1WithArea3D2" parent="." unique_id=1935764138 instance=ExtResource("1_py56h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0199158, -0.23550618, -0.87123215)
 
 [node name="CrocoColor1x1WithArea3D3" parent="." unique_id=264620433 instance=ExtResource("1_py56h")]
 transform = Transform3D(-0.9995393, 0, 0.030346587, 0, 1, 0, -0.030346587, 0, -0.9995393, 1.0199158, -0.23550618, 2.638042)
+
+[node name="CrocoColor1x1WithArea3D4" parent="." unique_id=1293667005 instance=ExtResource("1_py56h")]
+transform = Transform3D(0.0005236119, 0, 0.9999997, 0, 1, 0, -0.9999997, 0, 0.0005236119, -1.9053943, -0.034386635, -0.009758942)
+
+[node name="CrocoColor1x1WithArea3D5" parent="." unique_id=1627939034 instance=ExtResource("1_py56h")]
+transform = Transform3D(0.0075222626, 0, -0.9999717, 0, 1, 0, 0.9999717, 0, 0.0075222626, -6.3103914, -0.034386635, 0.04460562)
 
 [node name="CrocoColorPointBlack" parent="." unique_id=1216317755 instance=ExtResource("5_ynq2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
@@ -55,6 +85,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 [node name="CrocoColorPointYellow" parent="." unique_id=1347517781 instance=ExtResource("12_uwnac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
 
+[node name="CrocoColorPointYellow2" parent="." unique_id=1817628506 instance=ExtResource("12_uwnac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.037074, -0.15295959, -0.07668495)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1118613906]
 
 [node name="CheckButton" type="CheckButton" parent="CanvasLayer" unique_id=415082897]
@@ -67,4 +100,10 @@ text = "Open
 script = ExtResource("10_xovao")
 metadata/_custom_type_script = "uid://bofu3bjfi6yo"
 
-[connection signal="toggled" from="CanvasLayer/CheckButton" to="CrocoColor1x1WithArea3D" method="set_open_state"]
+[node name="CrocoColorCopyPaster" parent="." unique_id=684921105 instance=ExtResource("11_4gqks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.234529, 0, 0)
+
+[connection signal="toggled" from="CanvasLayer/CheckButton" to="Node3D/CrocoColor1x1WithArea3D" method="set_open_state"]
+
+[editable path="CrocoColor1x1WithArea3D5"]
+[editable path="CrocoColor1x1WithArea3D5/CrocoColor1x1"]

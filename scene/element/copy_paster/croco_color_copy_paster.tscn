@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://buexbodvo8dhu"]
+
+[ext_resource type="Script" uid="uid://dswsai27mrlna" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_is_touch_by_clip_facade_area.gd" id="1_6634l"]
+[ext_resource type="Script" uid="uid://cq8eiihishgx7" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_clip_facade.gd" id="2_apqx2"]
+[ext_resource type="Script" uid="uid://xn18hl4t4rv" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_clip_facade_to_rgb_event.gd" id="3_lacnn"]
+[ext_resource type="Script" uid="uid://bdk4yy0bney46" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_setter_tag_rgb.gd" id="4_0bjmj"]
+[ext_resource type="Script" uid="uid://cium7ymmdmeug" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_resource_rgb.gd" id="5_bt7t4"]
+[ext_resource type="Script" uid="uid://llosey2frpwh" path="res://addons/2026_03_30_gdp_croco_color_xr/script/croco_color_set_albedo_color.gd" id="6_4oalc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xovao"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54y8t"]
+albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gqks"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdkla"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_2hy5j"]
+script = ExtResource("5_bt7t4")
+color = Color(0, 1, 0, 1)
+metadata/_custom_type_script = "uid://cium7ymmdmeug"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmcyj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2hy5j"]
+size = Vector3(0.3055725, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2v22p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hho08"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="CrocoColorCopyPaster" type="Node3D" unique_id=684921105]
+
+[node name="CopyClap" type="Node3D" parent="." unique_id=853167896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CopyClap" unique_id=974982937]
+transform = Transform3D(0.28454778, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_xovao")
+surface_material_override/0 = SubResource("StandardMaterial3D_54y8t")
+
+[node name="CrocoColorIsTouchByClipFacadeArea" type="Area3D" parent="CopyClap/MeshInstance3D" unique_id=1027170938]
+script = ExtResource("1_6634l")
+allow_if_have_this_script_as_node = ExtResource("2_apqx2")
+metadata/_custom_type_script = "uid://dswsai27mrlna"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CopyClap/MeshInstance3D/CrocoColorIsTouchByClipFacadeArea" unique_id=1850354062]
+shape = SubResource("BoxShape3D_4gqks")
+
+[node name="CrocoColorClipFacadeToRgbEvent" type="Node" parent="CopyClap/MeshInstance3D/CrocoColorIsTouchByClipFacadeArea" unique_id=536564559]
+script = ExtResource("3_lacnn")
+metadata/_custom_type_script = "uid://xn18hl4t4rv"
+
+[node name="Middle" type="Node3D" parent="." unique_id=1241801342]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Middle" unique_id=1309519470]
+transform = Transform3D(0.264, 0, 0, 0, 1.263, 0, 0, 0, 1.263, 0, 0, 0)
+mesh = SubResource("BoxMesh_xovao")
+surface_material_override/0 = SubResource("StandardMaterial3D_fdkla")
+
+[node name="SetClap" type="Node3D" parent="." unique_id=900484314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="CrocoColorPointYellow3" type="Area3D" parent="SetClap" unique_id=367184972]
+
+[node name="TagColor" type="Node" parent="SetClap/CrocoColorPointYellow3" unique_id=1146225612]
+script = ExtResource("4_0bjmj")
+color_resource = SubResource("Resource_2hy5j")
+
+[node name="SetMesh" type="Node" parent="SetClap/CrocoColorPointYellow3" unique_id=1794141309 node_paths=PackedStringArray("to_affect")]
+script = ExtResource("6_4oalc")
+to_affect = [NodePath("../MeshInstance3D")]
+material_to_duplicate_at_ready = SubResource("StandardMaterial3D_jmcyj")
+metadata/_custom_type_script = "uid://llosey2frpwh"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SetClap/CrocoColorPointYellow3" unique_id=787226292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0024564266, 0, 0)
+shape = SubResource("BoxShape3D_2hy5j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SetClap/CrocoColorPointYellow3" unique_id=1494895100]
+transform = Transform3D(0.30955863, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_2v22p")
+surface_material_override/0 = SubResource("StandardMaterial3D_hho08")
+
+[connection signal="on_node_entering_valide" from="CopyClap/MeshInstance3D/CrocoColorIsTouchByClipFacadeArea" to="CopyClap/MeshInstance3D/CrocoColorIsTouchByClipFacadeArea/CrocoColorClipFacadeToRgbEvent" method="push_in_node"]
+[connection signal="on_croco_clip_color_found" from="CopyClap/MeshInstance3D/CrocoColorIsTouchByClipFacadeArea/CrocoColorClipFacadeToRgbEvent" to="SetClap/CrocoColorPointYellow3/TagColor" method="set_color"]
+[connection signal="on_color_at_ready" from="SetClap/CrocoColorPointYellow3/TagColor" to="SetClap/CrocoColorPointYellow3/SetMesh" method="set_color"]
+[connection signal="on_color_updated" from="SetClap/CrocoColorPointYellow3/TagColor" to="SetClap/CrocoColorPointYellow3/SetMesh" method="set_color"]

@@ -1,7 +1,6 @@
 class_name  CrocoColorDebugClipBWRGBCYP
 extends Node
 
-
 @export var clip_in_scene : Array[CrocoColorClipFacade3D]
 @export var clip_in_scene_black : Array[CrocoColorClipFacade3D]
 @export var clip_in_scene_white : Array[CrocoColorClipFacade3D]
@@ -22,7 +21,6 @@ func _ready():
 	timer.timeout.connect(refresh_debug_var_in_inspector)  # connect timeout signal
 
 func refresh_debug_var_in_inspector()->void:
-	
 	clip_in_scene.clear()	
 	clip_in_scene_black.clear()
 	clip_in_scene_white.clear()
