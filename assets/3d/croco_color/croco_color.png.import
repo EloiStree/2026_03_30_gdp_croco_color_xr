@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vy1ccw02suck"
-path.s3tc="res://.godot/imported/croco_color.png-1d7f6675b840c86d725b8c640735fc22.s3tc.ctex"
+path.s3tc="res://.godot/imported/croco_color.png-c9660972009b7dae44623033096eecae.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/2026_03_30_gdp_croco_color_xr/assets/3d/croco_color/croco_color.png"
-dest_files=["res://.godot/imported/croco_color.png-1d7f6675b840c86d725b8c640735fc22.s3tc.ctex"]
+source_file="res://addons/2026_03_30_gdp_croco_color/assets/3d/croco_color/croco_color.png"
+dest_files=["res://.godot/imported/croco_color.png-c9660972009b7dae44623033096eecae.s3tc.ctex"]
 
 [params]
 

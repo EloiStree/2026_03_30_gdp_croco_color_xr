@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dxvycteoevsn0"
-path="res://.godot/imported/croco_color.glb-0a8e0d53e9cf6e8f92a28fb467579659.scn"
+path="res://.godot/imported/croco_color.glb-a09c7b9c7dd7774b18fb2768be383a04.scn"
 
 [deps]
 
-source_file="res://addons/2026_03_30_gdp_croco_color_xr/assets/3d/croco_color/croco_color.glb"
-dest_files=["res://.godot/imported/croco_color.glb-0a8e0d53e9cf6e8f92a28fb467579659.scn"]
+source_file="res://addons/2026_03_30_gdp_croco_color/assets/3d/croco_color/croco_color.glb"
+dest_files=["res://.godot/imported/croco_color.glb-a09c7b9c7dd7774b18fb2768be383a04.scn"]
 
 [params]
 
